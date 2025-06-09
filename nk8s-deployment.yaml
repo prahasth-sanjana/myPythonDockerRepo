@@ -24,3 +24,18 @@ spec:
           value: "135.13.21.112"
         - name: TARGET_PORT
           value: "135"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-app-svc
+  namespace: python-app-ns
+spec:
+  selector:
+    app: python-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      nodePort: 30080

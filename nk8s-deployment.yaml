@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-python-app-deployment
-  namespace: python-app-ns     # Namespace where the deployment will be created
+  namespace: python-app-ns
 spec:
   replicas: 3
   selector:
@@ -19,18 +19,18 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
-# service type loadbalancer       
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: python-app-svc
-  namespace: python-app-ns     # Namespace where the deployment will be created
+  namespace: python-app-ns
 spec:
   selector:
     app: python-app
+  type: NodePort    # ← changed from ClusterIP
   ports:
     - protocol: TCP
       port: 80
       targetPort: 5000
-  type: ClusterIP
+      nodePort: 30080   # port on localhost (30000–32767 range)

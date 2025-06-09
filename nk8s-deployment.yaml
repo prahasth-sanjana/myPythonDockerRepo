@@ -33,9 +33,8 @@ metadata:
 spec:
   selector:
     app: python-app
-  type: NodePort
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
       targetPort: 5000
-      nodePort: 30080

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: https://hub.docker.com/repositories/farandesanjana
+        image: farandesanjana/mypythonapp:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

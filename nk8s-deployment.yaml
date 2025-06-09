@@ -19,18 +19,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: python-app-svc
-  namespace: python-app-ns
-spec:
-  selector:
-    app: python-app
-  type: NodePort    # ← changed from ClusterIP
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-      nodePort: 30080   # port on localhost (30000–32767 range)
+        env:
+        - name: TARGET_HOST
+          value: "135.13.21.112"
+        - name: TARGET_PORT
+          value: "135"
